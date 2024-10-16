@@ -61,6 +61,53 @@ class userController{
     }
 
 
+    updateProfile=async(req,res)=>{
+
+        try {
+
+
+            console.log("change profile picture entered")
+
+            const { email } = req.body;  
+
+            
+            const user = await User.findOne({ email });
+
+            console.log("got the user to change the image")
+
+            if (!user) {
+                return res.status(404).json({ message: 'User not found' });
+            }
+
+           
+            if (req.file) {
+
+                console.log("req.file got")
+                user.profilePicture = `/uploads/${req.file.filename}`;  
+               
+            }
+
+           
+            await user.save();
+
+            console.log("changed and user is saved")
+
+            res.status(200).json({ message: 'Profile picture updated successfully', user });
+        } catch (error) {
+
+            res.status(500).send({message:"Internal server error"})
+
+
+            
+        }
+
+    }
+
+
+
+
+
+
 
 }
 

@@ -9,7 +9,10 @@ next()
 
 }
 
-adminRoute.get("/home",middle,adminController.getAllUsers)
+adminRoute.get("/users",middle,adminController.getAllUsers)
+adminRoute.delete("/users/:id",adminController.deleteUser)
+adminRoute.post("/search",adminController.searchUser)
+
 
 
 
