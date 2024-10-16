@@ -1,4 +1,5 @@
 import User from "../Database/userSchema.js";
+import { generateToken } from "../utils/jwt.js";
 
 class userController{
 
@@ -47,7 +48,10 @@ class userController{
                 res.status(400).json({message:"Invalid username or password"})
             }else{
 
-                res.status(200).json({message:"Log in success"})
+
+                const token=generateToken(userFound)
+
+                res.status(200).json({message:"Log in success",token})
             }
 
 

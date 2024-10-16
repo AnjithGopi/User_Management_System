@@ -3,15 +3,14 @@ import adminController from "../Controllers/adminController.js";
 
 const adminRoute=express.Router()
 
-const middle=(req,res,next)=>{
-console.log('hiiii');
-next()
 
-}
 
-adminRoute.get("/users",middle,adminController.getAllUsers)
+adminRoute.post("/",adminController.login)
+adminRoute.get("/users",adminController.getAllUsers)
 adminRoute.delete("/users/:id",adminController.deleteUser)
 adminRoute.post("/search",adminController.searchUser)
+adminRoute.put('/user/:id',adminController.updateUser)
+
 
 
 
