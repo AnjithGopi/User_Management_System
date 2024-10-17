@@ -1,5 +1,6 @@
 
 import User from "../Database/userSchema.js"
+import { generateToken } from "../utils/jwt.js"
 
 class AdminController{
 
@@ -23,8 +24,10 @@ class AdminController{
 
                 if(admin.isAdmin==true){
 
-                    console.log("real Admin:",admin)
-                    return res.status(200).json({message:"Admin Login SuccessFull",data:admin})
+                  
+                    const token=generateToken(admin)
+                    
+                    return res.status(200).json({message:"Admin Login SuccessFull",data:admin,token})
 
                 }else{
                     return res.status(404).json({message:"No admin found"})
