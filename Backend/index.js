@@ -2,6 +2,7 @@
 import express from "express"
 import mongoose from "mongoose"
 import 'dotenv/config'
+import cors from 'cors'
 
 const app=express()
  import userRoute from "./src/Routes/userRoute.js"
@@ -14,6 +15,7 @@ app.use('/uploads', express.static('./src/uploads'))
 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
+app.use(cors())
 
 
 app.use('/',userRoute)

@@ -8,13 +8,14 @@ class userController{
     registration=async(req,res)=>{
 
         try {
-             console.log("KKKK",req.body)
+            console.log(req.body)
             const{username,email,password}=req.body
             const user=new User({username,email,password})
             await user.save()
-
+            console.log('user created is ',user)
             if(user){
-                res.status(200).json({message:"Registration success"})
+
+                res.status(200).json({message:"Registration success",data:user})
 
             }else{
                 res.status(400).json({message:"Failed to Register"})
@@ -51,7 +52,7 @@ class userController{
 
                 const token=generateToken(userFound)
 
-                res.status(200).json({message:"Log in success",token})
+                res.status(200).json({message:"Log in success",token,data:userFound})
             }
 
 
