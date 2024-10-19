@@ -73,10 +73,12 @@ class userController{
 
             console.log("change profile picture entered")
 
-            const { email } = req.body;  
+            // const { email } = req.body;  
 
             
-            const user = await User.findOne({ email });
+            // const user = await User.findOne({ email });
+            const userId = req.user.id
+            const user = await User.findById(userId)
 
             console.log("got the user to change the image")
 

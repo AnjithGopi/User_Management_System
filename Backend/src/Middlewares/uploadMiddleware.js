@@ -10,7 +10,8 @@ const __dirname = path.dirname(__filename);
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     // Resolve the path to ensure absolute path
-    cb(null, path.join(__dirname, '../uploads'));  // Path to uploads folder
+   // cb(null, path.join(__dirname, '../uploads'));  // Path to uploads folder
+   cb(null, path.join(__dirname, '../../../userManagementFrontEnd/uploads/'));
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + path.extname(file.originalname);

@@ -83,6 +83,29 @@ export const loginAdmin=createAsyncThunk(  // admin login action
 )
 
 
+export const updateProfilePicture = createAsyncThunk(
+  'auth/updateProfilePicture',
+  async (formData, thunkAPI) => {
+ 
+    try {
+      const token = thunkAPI.getState().auth.token; 
+      console.log("token got for DP:",token)
+        const response = await axios.post("http://localhost:4000/update-profile", formData, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+
+        return response.data; 
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.response.data);
+    }
+}
+);
+
+
+
 
 const authSlice=createSlice({
     name:"auth",
@@ -106,7 +129,11 @@ const authSlice=createSlice({
             state.user = null;
             state.token = null;
            
-          }
+          },
+          updateUser: (state, action) => {
+            state.user = { ...state.user, ...action.payload }; // Update user with new data
+        },
+          
     },
 
 
@@ -137,6 +164,8 @@ const authSlice=createSlice({
       state.isSuccess = true;
       state.user = action.payload.data; // Assuming the response includes a user object
       state.token = action.payload.token; // Store the JWT token
+      
+
     })
     .addCase(loginUser.rejected, (state, action) => {
       state.isLoading = false;
@@ -154,14 +183,32 @@ const authSlice=createSlice({
        state.isLoading = false;
        state.isSuccess = true;
        state.user = action.payload.data; // Assuming the response includes a user object for admin
-       state.token = action.payload.token; // Store the JWT token for admin
-       localStorage.setItem('token', action.payload.token);
+       state.token = action.payload.token; // Storing the JWT token for admin
+       localStorage.setItem('token', action.payload.token);// Storing the JWT token for admin in the local storage
      })
      .addCase(loginAdmin.rejected, (state, action) => {
        state.isLoading = false;
        state.isError = true;
        state.message = action.payload; // Store the error message
      });
+
+
+      // Profile Picture Update
+    builder
+    .addCase(updateProfilePicture.pending, (state) => {
+        state.isLoading = true;
+    })
+    .addCase(updateProfilePicture.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        // state.user = action.payload.data; 
+        state.user = { ...state.user, ...action.payload.user };
+    })
+    .addCase(updateProfilePicture.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload; // Store the error message
+    });
 }
 
 

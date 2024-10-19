@@ -55,14 +55,9 @@ function UserLogin() {
 
     useEffect(()=>{
 
-        if(isSuccess){
-
-            
+        if(isSuccess){           
 
             navigate("/")
-
-
-
         }
 
         if (isError) {
