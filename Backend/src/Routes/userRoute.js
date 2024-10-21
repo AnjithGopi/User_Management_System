@@ -10,7 +10,7 @@ const userRoute=express.Router()
 
 userRoute.post("/signup",userController.registration)
 userRoute.post("/login",userController.login)
-userRoute.post('/update-profile',authMiddleware,upload.single('profilePicture'), userController.updateProfile);
+userRoute.post('/update-profile',authMiddleware,upload.single('profilePicture'), userController.updateProfile)
 
 
 export default userRoute
