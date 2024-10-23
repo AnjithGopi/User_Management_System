@@ -1,7 +1,7 @@
 /* AdminDash.css */
 .search-input {
-  width: 200px; /* Adjust this value as needed */
-  padding: 10px;
+  width: 200px; /* Adjusted to a smaller width */
+  padding: 8px; /* Slightly reduced padding */
   border-radius: 5px;
   border: 1px solid #ccc; /* Optional: adjust border color */
   margin-bottom: 20px; /* Space below the input */
@@ -40,7 +40,7 @@
   margin-bottom: 20px;
   width: 100%;
 }
-
+/* 
 input[type="text"],
 input[type="email"] {
   width: 100%;
@@ -50,7 +50,7 @@ input[type="email"] {
   margin: 10px 0;
   font-size: 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
+} */
 
 input:focus {
   outline: none;
