@@ -27,7 +27,8 @@ class AdminController{
                   
                     const token=generateToken(admin)
                     
-                    return res.status(200).json({message:"Admin Login SuccessFull",data:admin,token})
+                   return res.status(200).json({message:"Admin Login SuccessFull",data:admin,token})
+                   
 
                 }else{
                     return res.status(404).json({message:"No admin found"})

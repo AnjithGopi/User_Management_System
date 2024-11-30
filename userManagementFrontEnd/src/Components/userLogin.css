@@ -24,6 +24,7 @@
 }
 
 .login-container form {
+  
   background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
   padding: 30px; /* Inner padding */
   border-radius: 15px; /* Rounded corners */
@@ -44,6 +45,7 @@
 }
 
 .login-container input {
+  
   width: 100%; /* Full width */
   padding: 10px; /* Padding inside input */
   margin: 10px 0; /* Space between inputs */
